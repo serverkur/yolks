@@ -4,7 +4,7 @@ LABEL       author="QuintenQVD" maintainer="josdekurk@gmail.com"
 
 RUN         apt update \
 			&& apt -y install curl tar bzip2 file \
-            && curl -Lo dotnet-sdk-arm64.tar.gz https://download.visualstudio.microsoft.com/download/pr/11abab07-d7a2-46b0-9ab5-19d5db67212f/783196073ecbd9fd64378fec412affbe/dotnet-sdk-3.1.423-linux-arm64.tar.gz \
+            && curl -Lo dotnet-sdk-arm64.tar.gz https://download.visualstudio.microsoft.com/download/pr/620a7215-63f9-47bb-b88a-7798e958ed2d/539a8c04045ab69efa77504f75f07a23/dotnet-sdk-7.0.100-rc.1.22431.12-linux-arm64.tar.gz \   
             && echo $PATH \
             && mkdir -p /usr/share/dotnet \
 			&& tar -zxf dotnet-sdk-arm64.tar.gz -C /usr/share/dotnet \

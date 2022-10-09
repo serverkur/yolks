@@ -1,18 +1,19 @@
-FROM        ghcr.io/parkervcp/yolks:debian
+FROM         --platform=$TARGETOS/$TARGETARCH debian:bullseye-slim
 
-LABEL       author="Torsten Widmann" maintainer="support@goover.de"
+LABEL       author="QuintenQVD" maintainer="josdekurk@gmail.com"
 
 RUN         apt update \
             && apt -y upgrade
-RUN         apt install -y fontconfig dirmngr
-RUN         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-RUN         sh -c 'echo "deb https://download.mono-project.com/repo/debian stable-buster main" > /etc/apt/sources.list.d/mono-official-stable.list'
+RUN         apt install -y fontconfig dirmngr iproute2 curl ca-certificates openssl git tar sqlite3         
 RUN         apt update
-RUN         apt install -y mono-complete lib32gcc-s1
+RUN         apt install -y mono-complete libc6
+RUN         useradd -m -d /home/container -s /bin/bash container
+RUN         ln -s /home/container/ /nonexistent
 
-USER        container
-ENV         USER=container HOME=/home/container
-WORKDIR     /home/container
+USER container
+ENV USER=container
+ENV HOME=/home/container
+WORKDIR /home/container
 
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
