@@ -35,4 +35,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            quintenqvd/pterodactyl_images:${{ matrix.tag }}
+            quintenqvd/pterodactyl_images:mono_${{ matrix.tag }}
