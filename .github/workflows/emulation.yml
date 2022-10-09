@@ -32,7 +32,7 @@ jobs:
           password: ${{ secrets.REGISTRY_TOKEN }}
       - uses: docker/build-push-action@v3
         with:
-          context: ./emulation
+          context: ./emulation/${{ matrix.tag }}
           file: ./emulation/${{ matrix.tag }}/Dockerfile
           platforms: linux/arm64
           push: true
