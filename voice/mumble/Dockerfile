@@ -1,7 +1,7 @@
 FROM      --platform=$TARGETOS/$TARGETARCH alpine:3.16
 
 ##    install dependencies
-RUN   apk add --no-cache murmur curl wget git iproute2 fontconfig ca-certificates sqlite tar
+RUN   apk add --no-cache murmur curl wget git iproute2 fontconfig ca-certificates sqlite tar openssl
 
 RUN   adduser -D container
 
