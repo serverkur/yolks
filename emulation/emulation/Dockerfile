@@ -45,6 +45,14 @@ RUN         wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt
 ## steamcmd specific packages            
 RUN        apt install -y libc6:armhf libncurses5:armhf libsdl2*:armhf libopenal*:armhf libpng*:armhf libfontconfig*:armhf libXcomposite*:armhf libbz2-dev:armhf libXtst*:armhf
 
+
+## install rcon
+RUN         cd /tmp/ \
+            && curl -sSL https://github.com/itzg/rcon-cli/releases/download/1.6.0/rcon-cli_1.6.0_linux_arm64.tar.gz > rcon.tar.gz \
+            && tar xvf rcon.tar.gz \
+            && mv rcon-cli rcon \
+            && mv rcon /usr/local/bin/
+
 ENV     STEAMOS=1
 ENV     STEAM_RUNTIME=1
 
