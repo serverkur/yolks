@@ -10,13 +10,11 @@ RUN         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3F
 RUN         sh -c 'echo "deb https://download.mono-project.com/repo/debian stable-buster main" > /etc/apt/sources.list.d/mono-official-stable.list'
 RUN         apt update
 RUN         apt install -y mono-complete
-RUN         useradd -m -d /home/container -s /bin/bash container
-RUN         ln -s /home/container/ /nonexistent
 
-USER container
-ENV USER=container
-ENV HOME=/home/container
-WORKDIR /home/container
+
+USER        container
+ENV         USER=container HOME=/home/container
+WORKDIR     /home/container
 
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
