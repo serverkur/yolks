@@ -17,6 +17,7 @@ RUN         apt update \
 
 USER        container
 ENV         USER=container HOME=/home/container
+ENV			DOTNET_ROOT=/usr/share/
 WORKDIR     /home/container
 
 COPY   		 ./../entrypoint.sh /entrypoint.sh
