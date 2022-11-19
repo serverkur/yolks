@@ -34,5 +34,10 @@ RUN         dpkg --add-architecture armhf \
 
 RUN         apt install -y libc6:armhf libncurses5:armhf libsdl2*:armhf libopenal*:armhf libpng*:armhf libfontconfig*:armhf libXcomposite*:armhf libbz2-dev:armhf libXtst*:armhf 
 
+##Install box64
+RUN         wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list \
+            && wget -O- https://ryanfortner.github.io/box64-debs/KEY.gpg | gpg --dearmor | tee /usr/share/keyrings/box64-debs-archive-keyring.gpg \
+            && apt update && apt install box64 -y
+			
 ENV     STEAMOS=1
 ENV     STEAM_RUNTIME=1
