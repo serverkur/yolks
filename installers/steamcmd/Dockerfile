@@ -1,7 +1,7 @@
 FROM debian:bullseye-slim as build-box64
 
-RUN apt-get update && 
-    apt-get install --yes --no-install-recommends git  python3 build-essential cmake ca-certificates && \
+RUN apt-get update && \
+    apt-get install --yes --no-install-recommends git python3 build-essential cmake ca-certificates && \
     apt-get install --yes --no-install-recommends gcc-arm-linux-gnueabihf libc6-dev-armhf-cross libc6
 
 RUN git clone https://github.com/ptitSeb/box64.git; mkdir /box64/build
