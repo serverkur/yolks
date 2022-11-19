@@ -1,4 +1,17 @@
-FROM debian:bullseye-slim as build
+FROM debian:bullseye-slim as build-box64
+
+RUN apt-get update && 
+    apt-get install --yes --no-install-recommends git  python3 build-essential cmake ca-certificates && \
+    apt-get install --yes --no-install-recommends gcc-arm-linux-gnueabihf libc6-dev-armhf-cross libc6
+
+RUN git clone https://github.com/ptitSeb/box64.git; mkdir /box64/build
+
+WORKDIR /box64/build
+RUN cmake .. -DRPI4ARM64=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
+    make -j$(nproc) && \
+    make install DESTDIR=/tmp/install
+	
+FROM debian:bullseye-slim as build-box86
 
 RUN dpkg --add-architecture armhf && \
     apt-get update && \
@@ -14,9 +27,11 @@ RUN cmake .. -DRPI4ARM64=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
     make -j$(nproc) && \
     make install DESTDIR=/tmp/install
 
+
 FROM        --platform=$TARGETOS/$TARGETARCH debian:bullseye-slim
 
-COPY --from=build /tmp/install /
+COPY --from=build-box86 /tmp/install /
+COPY --from=build-box64 /tmp/install /
 
 RUN dpkg --add-architecture armhf && \
     apt-get update && \
@@ -34,10 +49,6 @@ RUN         dpkg --add-architecture armhf \
 
 RUN         apt install -y libc6:armhf libncurses5:armhf libsdl2*:armhf libopenal*:armhf libpng*:armhf libfontconfig*:armhf libXcomposite*:armhf libbz2-dev:armhf libXtst*:armhf 
 
-##Install box64
-RUN         wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list \
-            && wget -O- https://ryanfortner.github.io/box64-debs/KEY.gpg | gpg --dearmor | tee /usr/share/keyrings/box64-debs-archive-keyring.gpg \
-            && apt update && apt install box64 -y
 			
 ENV     STEAMOS=1
 ENV     STEAM_RUNTIME=1
