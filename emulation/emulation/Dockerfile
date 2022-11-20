@@ -15,9 +15,22 @@ RUN cmake .. -DRPI4ARM64=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
     make -j$(nproc) && \
     make install DESTDIR=/tmp/install
 
+
+FROM --platform=linux/arm64 golang:1.16.7-bullseye as builder
+
+RUN 	apt update \
+		&& apt install -y git curl gcc musl-dev
+
+RUN 	git clone https://github.com/gorcon/rcon-cli.git \
+		&& cd rcon-cli/ \
+		&& go get -v -t -d ./... \
+		&& go build -v ./cmd/gorcon \
+		&& mv gorcon /tmp/rcon
+
 FROM debian:bullseye-slim
 
 COPY --from=build /tmp/install /
+COPY --from=builder /tmp/rcon /usr/local/bin/rcon
 
 RUN dpkg --add-architecture armhf && \
     apt-get update && \
@@ -45,13 +58,6 @@ RUN         wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt
 ## steamcmd specific packages            
 RUN        apt install -y libc6:armhf libncurses5:armhf libsdl2*:armhf libopenal*:armhf libpng*:armhf libfontconfig*:armhf libXcomposite*:armhf libbz2-dev:armhf libXtst*:armhf
 
-
-## install rcon
-RUN         cd /tmp/ \
-            && curl -sSL https://github.com/itzg/rcon-cli/releases/download/1.6.0/rcon-cli_1.6.0_linux_arm64.tar.gz > rcon.tar.gz \
-            && tar xvf rcon.tar.gz \
-            && mv rcon-cli rcon \
-            && mv rcon /usr/local/bin/
 
 ENV     STEAMOS=1
 ENV     STEAM_RUNTIME=1
