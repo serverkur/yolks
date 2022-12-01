@@ -55,8 +55,8 @@ done
 MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo ":/home/container$ ${MODIFIED_STARTUP}"
 
-simpleproxy -L 127.0.0.1:${SERVER_PORT} -R 0.0.0.0:${server.build.default.gameport} -d
-simpleproxy -L 127.0.0.1:${server.build.default.int_webport} -R 0.0.0.0:${server.build.default.ext_webport} -d
+simpleproxy -L 127.0.0.1:$SERVER_PORT -R 0.0.0.0:$GAMEPORT -d
+simpleproxy -L 127.0.0.1:$WEBPORTI -R 0.0.0.0:$WEBPORTE -d
 
 # Run the Server
 eval ${MODIFIED_STARTUP}
