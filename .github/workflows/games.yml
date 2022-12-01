@@ -10,7 +10,7 @@ on:
       - games/**
 jobs:
   pushArm:
-    name: "yolks:games_${{ matrix.tag }}"
+    name: "yolks:gamesarmd_${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -47,7 +47,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache-new
           push: true
           tags: |
-             quintenqvd/pterodactyl_images:games_${{ matrix.oses }}
+             quintenqvd/pterodactyl_images:games_${{ matrix.tag }}
       - name: Move cache
         run: |
           rm -rf /tmp/.buildx-cache
