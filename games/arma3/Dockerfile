@@ -13,13 +13,10 @@ RUN         dpkg --add-architecture armhf \
                 gettext-base \
                 ca-certificates \
                 libssl-dev \
-                lib32gcc-s1 \
                 libsdl2-2.0-0 \
                 libsdl2-2.0-0:armhf \
-                libstdc++6 \
                 numactl \
                 libstdc++6:armhf \
-                lib32stdc++6 \
                 libnss-wrapper \
                 libnss-wrapper:armhf \
                 libtbb2 \
