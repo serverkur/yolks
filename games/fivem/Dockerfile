@@ -2,7 +2,8 @@ FROM 		--platform=$TARGETOS/$TARGETARCH quintenqvd/pterodactyl_images:installer_
 
 ENV         DEBIAN_FRONTEND=noninteractive
 
-RUN         apt update \
+RUN         rm -rf /usr/local/bin/box86 \
+			&& apt update \
 			&& apt upgrade -y \
 			&& apt install -y unzip curl iproute2 tzdata libgdiplus libsdl2-2.0-0:armhf lib32gcc-s1-amd64-cross \
 			&& apt install -y nodejs \
