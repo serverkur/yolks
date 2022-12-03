@@ -17,6 +17,7 @@ RUN         dpkg --add-architecture armhf \
                 libsdl2-2.0-0:armhf \
                 numactl \
                 libstdc++6:armhf \
+				net-tools \
                 libnss-wrapper \
                 libnss-wrapper:armhf \
                 libtbb2 \
