@@ -56,7 +56,7 @@ RUN         wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt
             && apt update && apt install box64 -y
 
 ## steamcmd specific packages            
-RUN        apt install -y libc6:armhf libncurses5:armhf libsdl2*:armhf libopenal*:armhf libpng*:armhf libfontconfig*:armhf libXcomposite*:armhf libbz2-dev:armhf libXtst*:armhf
+RUN        apt install -y libc6:armhf libncurses5:armhf libsdl2-2.0-0 libsdl2-2.0-0:armhf libsdl2*:armhf libopenal*:armhf libpng*:armhf libfontconfig*:armhf libXcomposite*:armhf libbz2-dev:armhf libXtst*:armhf
 
 
 ENV     STEAMOS=1
