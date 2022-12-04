@@ -7,8 +7,8 @@ export INTERNAL_IP
 
 node -v
 
-export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
-export PUPPETEER_EXECUTABLE_PATH='/usr/bin/chromium-browser'
+export DOCKER=1
+export PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 # Replace Startup Variables
 MODIFIED_STARTUP=$(echo -e ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
