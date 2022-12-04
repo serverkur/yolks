@@ -6,6 +6,7 @@ RUN         apt update \
             && apt -y install ffmpeg iproute2 git sqlite3 libsqlite3-dev python3 python3-dev ca-certificates dnsutils tzdata zip tar curl build-essential libtool \
             && npm -g install npm@latest \
 			&& npm -g install typescript \
+			&& ln -s /usr/bin/chromium /usr/bin/chromium-browser \
             && useradd -m -d /home/container container
 
 RUN     apt update \
@@ -13,13 +14,12 @@ RUN     apt update \
         && which chromium
 
 
-
 USER 		container
 ENV  		USER=container HOME=/home/container
-ENV             PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
-ENV             PUPPETEER_EXECUTABLE_PATH='/usr/bin/chromium'
+ENV         PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
+ENV         PUPPETEER_EXECUTABLE_PATH='/usr/bin/chromium'
 WORKDIR 	/home/container
 
 COPY 		./entrypoint.sh /entrypoint.sh
 
-CMD		[ "/bin/bash", "/entrypoint.sh" ]
+CMD			[ "/bin/bash", "/entrypoint.sh" ]
