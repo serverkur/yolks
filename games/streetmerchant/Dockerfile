@@ -5,7 +5,7 @@ RUN apk add --no-cache chromium
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
   DOCKER=true
 
-RUN addgroup --disabled-password -H /home/container container
+RUN addgroup --d -H /home/container container
 
 USER 		container
 ENV  		USER=container HOME=/home/container
