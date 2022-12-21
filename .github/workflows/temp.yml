@@ -91,6 +91,7 @@ jobs:
       matrix:
         tag:
           - steamcmd_ubuntu
+          - redis_7
     steps:
       - uses: actions/checkout@v2
       - name: Set up QEMU
