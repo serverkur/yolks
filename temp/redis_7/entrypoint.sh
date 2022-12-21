@@ -10,7 +10,7 @@ MODIFIED_STARTUP=$(echo -e ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo ":/home/container$ ${MODIFIED_STARTUP}"
 
 echo "starting the redis server"
-/usr/local/bin/redis-server /home/container/redis.conf --save 60 1 --dir /home/container/ --bind 0.0.0.0 --port ${SERVER_PORT} --requirepass ${SERVER_PASSWORD} --maxmemory ${SERVER_MEMORY}mb --daemonize yes
+/usr/local/bin/redis-server /home/container/redis.conf --save 60 1 --dir /home/container/ --bind 172.18.0.1 --port ${SERVER_PORT} --requirepass "{{SERVER_PASSWORD}}" --maxmemory ${SERVER_MEMORY}mb --daemonize yes
 ss -lntp | grep ${SERVER_PORT}
 sleep 2
 echo "connecting with the cli"
