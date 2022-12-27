@@ -92,6 +92,7 @@ jobs:
         tag:
           - steamcmd_ubuntu
           - redis_7
+          - debian
     steps:
       - uses: actions/checkout@v2
       - name: Set up QEMU
