@@ -20,10 +20,6 @@ RUN   apt install -y gcc g++ libgcc1 libc++-dev gdb libc6 git wget curl tar zip 
 RUN   update-locale lang=en_US.UTF-8 \
         &&   dpkg-reconfigure --frontend noninteractive locales
 
-## add back libssl1.1
-RUN		echo "deb http://security.ubuntu.com/ubuntu focal-security main" | tee /etc/apt/sources.list.d/focal-security.list \
-		&& apt update \
-		&& apt install -y libssl1.1 
 		
 WORKDIR /home/container
 

@@ -93,6 +93,7 @@ jobs:
           - steamcmd_ubuntu
           - redis_7
           - debian
+          - ubuntu
     steps:
       - uses: actions/checkout@v2
       - name: Set up QEMU
