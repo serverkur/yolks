@@ -94,6 +94,7 @@ jobs:
           - redis_7
           - debian
           - ubuntu
+          - crystal
     steps:
       - uses: actions/checkout@v2
       - name: Set up QEMU
