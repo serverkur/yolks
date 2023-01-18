@@ -41,6 +41,7 @@ RUN     update-locale lang=en_US.UTF-8 \
 
 ENV     STEAMOS=1
 ENV     STEAM_RUNTIME=1
+ENV     DBUS_FATAL_WARNINGS=0
 
 RUN		useradd -d /home/container -m container
 USER    container

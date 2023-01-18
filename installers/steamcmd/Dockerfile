@@ -52,3 +52,4 @@ RUN         apt install -y libc6:armhf libsdl2-2.0-0 libsdl2-2.0-0:armhf libncur
 			
 ENV     STEAMOS=1
 ENV     STEAM_RUNTIME=1
+ENV     DBUS_FATAL_WARNINGS=0
