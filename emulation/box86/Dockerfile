@@ -21,7 +21,7 @@ COPY --from=build /tmp/install /
 
 RUN dpkg --add-architecture armhf && \
     apt-get update && \
-    apt-get install --yes --no-install-recommends libc6:armhf libstdc++6:armhf gcc-arm-linux-gnueabihf libc6:armhf libncurses5:armhf netcat && \
+    apt-get install --yes --no-install-recommends libc6:armhf libstdc++6:armhf gcc-arm-linux-gnueabihf libc6:armhf libncurses5:armhf netcat libflashrom1 libftdi1-2 telnet && \
     apt-get -y autoremove && \
     apt-get clean autoclean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists
